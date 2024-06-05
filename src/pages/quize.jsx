@@ -2,6 +2,7 @@ import { addDoc, collection, getDocs, query, updateDoc, where } from 'firebase/f
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import user from '../../utils/user_services';
+import Entername from './EnterName/Entername';
 
 const Quiz = () => {
     const [quizzes, setQuizzes] = useState([]);
@@ -124,22 +125,11 @@ const Quiz = () => {
             {!isSubmitted ? (
                 <div>
                     {currentQuizIndex === -1 ? (
-                        <div className='m-auto w-fit relative top-96 flex flex-wrap items-center justify-center'>
-                            <input
-                                type="text"
-                                placeholder="Enter your name"
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                className='text-4xl p-4 text-black'
-                            />
-                            <button
-                                style={{ backgroundColor: "#FCE300", color: "black" }}
-                                className='p-4 text-4xl hover:bg-black hover:text-white active:bg-white active:text-black'
-                                onClick={checkUserpass}
-                            >
-                                Start Quiz
-                            </button>
-                        </div>
+                        <Entername
+                        userName={userName}
+                        setUserName={setUserName}
+                        checkUserpass={checkUserpass}
+                    />
                     ) : (
                         currentQuizIndex >= 0 && currentQuizIndex < quizzes.length && (
                             <div className='m-auto w-fit relative top-24'>
